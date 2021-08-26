@@ -1,0 +1,16 @@
+<h3>Image Upload</h3>
+<!-- <input type="text" (change)="addImage($event.target.value)">  -->
+<input type="file" name="" id="" multiple accept="*" (change)="addImage($event.target.value)">
+
+<h5>Your Product Images</h5>
+<div *ngFor="let image of images">
+  <div class="product-gallery">
+    {{image}}
+    <img src="" alt="">
+    <input type="text" name="" id="">
+    <br>
+    <textarea name="" id="" cols="20" rows="3"></textarea>
+    <br>
+    <button (click)="deleteImage()">Delete</button>
+  </div>
+</div>
