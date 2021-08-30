@@ -26,7 +26,7 @@ import { LocationSaveComponent } from './location-save/location-save.component';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD1LO57a_lvNYcpgFynSG08Vt4d9fNBVy0',
+      apiKey: 'example',
       libraries: ['places', 'drawing']
   })
   ],
