@@ -8,16 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SliderComponent implements OnInit {
 
-  value: number = 5;
-  options: Options = {
-    floor: 0,
-    ceil: 10,
-    showSelectionBar: true,
-  };
-  
-  constructor() { }
+  public value: number;
+  public options: Options = {};
+
+  constructor() {
+    this.options = {
+      floor: 1,
+      ceil: 10,
+      showSelectionBar: true,
+      step: 1,
+    };
+
+    this.value = 1;
+  }
 
   ngOnInit(): void {
+  }
+
+  public checkIntensity() {
+    if (this.value !== null) {
+      if (isNaN(this.value)) {
+        this.value = 5;
+      } else if (this.value > 10) {
+        this.value = 10;
+      } else if (this.value < 1) {
+        this.value = 1;
+      }
+    }
   }
 
 }

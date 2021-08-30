@@ -1,6 +1,26 @@
-<h3>Temperature</h3>
-<p>Value: <input type="number" [(ngModel)]="value"></p>
+<!-- <p><input type="number" [(value)]="value"></p> -->
 
-<div style="height: 300px;">
-	<ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+<div class="row">
+	<div class="col-xs-6">
+			<div class="slider-temperature">
+					<div class="thermometer-top"></div>
+						<div style="height: 300px;">
+							<ngx-slider [(value)]="temperature" [(options)]="options"></ngx-slider>
+						</div>
+					<div class="thermometer-bulb"></div>
+			</div>
+	</div>
+	<div class="col-xs-6">
+			<input type="number" id="temperatureValue" (change)="checkTemperature()" [(ngModel)]="temperature">
+			<label class="checkbox" (click)="setTemperatureUnit('C')">
+				<p><i class="fa fa-circle-o" *ngIf="!isTemperatureUnit('C')"></i></p>
+				<p><i class="fa fa-circle" *ngIf="isTemperatureUnit('C')"></i></p>
+				<span translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.TEMPERATURE.C">C</span>
+			</label>
+			<label class="checkbox" (click)="setTemperatureUnit('F')">
+				<p><i class="fa fa-circle-o" *ngIf="!isTemperatureUnit('F')"></i></p>
+				<p><i class="fa fa-circle" *ngIf="isTemperatureUnit('F')"></i></p>
+				<span translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.TEMPERATURE.F">F</span>
+			</label>
+	</div>
 </div>

@@ -8,141 +8,94 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemperatureSliderComponent implements OnInit {
 
-  value: number = 5;
-  options: Options = {
-    floor: -20,
-    ceil: 100,
-    vertical: true,
-    showTicks: true,
-    showSelectionBar: true,
-    stepsArray: [
-      { value: -20 },
-      { value: -19 },
-      { value: -18 },
-      { value: -17 },
-      { value: -16 },
-      { value: -15 },
-      { value: -14 },
-      { value: -13 },
-      { value: -12 },
-      { value: -11 },
-      { value: -10, legend: "-10" },
-      { value: -9 },
-      { value: -8 },
-      { value: -7 },
-      { value: -6 },
-      { value: -5 },
-      { value: -4 },
-      { value: -3 },
-      { value: -2 },
-      { value: -1 },
-      { value: 0 },
-      { value: 1 },
-      { value: 2 },
-      { value: 3 },
-      { value: 4 },
-      { value: 5 },
-      { value: 6 },
-      { value: 7 },
-      { value: 8 },
-      { value: 9 },
-      { value: 10, legend: "10" },
-      { value: 11 },
-      { value: 12 },
-      { value: 13 },
-      { value: 14 },
-      { value: 15 },
-      { value: 16 },
-      { value: 17 },
-      { value: 18 },
-      { value: 19 },
-      { value: 20 },
-      { value: 21 },
-      { value: 22 },
-      { value: 23 },
-      { value: 24 },
-      { value: 25 },
-      { value: 26 },
-      { value: 27 },
-      { value: 28 },
-      { value: 29 },
-      { value: 30, legend: "30" },
-      { value: 31 },
-      { value: 32 },
-      { value: 33 },
-      { value: 34 },
-      { value: 35 },
-      { value: 36 },
-      { value: 37 },
-      { value: 38 },
-      { value: 39 },
-      { value: 40 },
-      { value: 41 },
-      { value: 42 },
-      { value: 43 },
-      { value: 44 },
-      { value: 45 },
-      { value: 46 },
-      { value: 47 },
-      { value: 48 },
-      { value: 49 },
-      { value: 50, legend: "50" },
-      { value: 51 },
-      { value: 52 },
-      { value: 53 },
-      { value: 54 },
-      { value: 55 },
-      { value: 56 },
-      { value: 57 },
-      { value: 58 },
-      { value: 59 },
-      { value: 60 },
-      { value: 61 },
-      { value: 62 },
-      { value: 63 },
-      { value: 64 },
-      { value: 65 },
-      { value: 66 },
-      { value: 67 },
-      { value: 68 },
-      { value: 69 },
-      { value: 70, legend: "70" },
-      { value: 71 },
-      { value: 72 },
-      { value: 73 },
-      { value: 74 },
-      { value: 75 },
-      { value: 76 },
-      { value: 77 },
-      { value: 78 },
-      { value: 79 },
-      { value: 80 },
-      { value: 81 },
-      { value: 82 },
-      { value: 83 },
-      { value: 84 },
-      { value: 85 },
-      { value: 86 },
-      { value: 87 },
-      { value: 88 },
-      { value: 89 },
-      { value: 90, legend: "90" },
-      { value: 91 },
-      { value: 92 },
-      { value: 93 },
-      { value: 94 },
-      { value: 95 },
-      { value: 96 },
-      { value: 97 },
-      { value: 98 },
-      { value: 99 },
-      { value: 100 }
-    ]
-  };
-  
-  constructor() { }
+  public temperature: number = 0;
+  public temperatureUnits: string;
+  public temperatureFloor: number;
+  public temperatureCeil: number;
+  public temperatureStep: number;
+  public options: Options = {};
+  public temperatureOptions: any = {};
 
-  ngOnInit(): void {
+  constructor() {
+    this.temperatureOptions = {
+      "ranges": {
+        "C": {
+          "min": -20,
+          "max": 40,
+          "step": 10
+        },
+        "F": {
+          "min": -10,
+          "max": 100,
+          "step": 20
+        }
+      }
+    }
+
+    this.options = {
+      floor: -10,
+      ceil: 100,
+      tickStep: 20,
+      showTicks: true,
+      showTicksValues: true,
+      showSelectionBar: true,
+      vertical: true,
+      tickValueStep: 10
+    }
   }
 
+  ngOnInit(): void {
+    this.initTemperature();
+  }
+
+  public setNewOption(newFloor: number, newCeil: number, newTickStep: number): void {
+    // Due to change detection rules in Angular, we need to re-create the options object to apply the change
+    const newOptions: Options = Object.assign({}, this.options);
+    newOptions.floor = newFloor;
+    newOptions.ceil = newCeil;
+    newOptions.tickStep = newTickStep;
+    this.options = newOptions;
+  }
+
+  public initTemperature() {
+    this.temperature = this.temperature || 50;
+    this.temperatureUnits = this.temperatureUnits || 'F';
+    // this.temperatureFloor = -10;
+    // this.temperatureCeil = 100;
+  }
+
+  public isTemperatureUnit(unit: string) {
+    return this.temperatureUnits === unit;
+  }
+
+  public checkTemperature() {
+    if (this.temperature !== null) {
+      if (isNaN(this.temperature)) {
+        this.temperature = this.isTemperatureUnit('F') ? 50 : 10;
+      } else if (this.temperature > this.temperatureCeil) {
+        this.temperature = this.temperatureCeil;
+      } else if (this.temperature < this.temperatureFloor) {
+        this.temperature = this.temperatureFloor;
+      }
+    }
+  }
+
+  public setTemperatureUnit(unit: string) {
+    // const tempRanges = $scope.currentQuestion.options.ranges;
+    const tempRanges = this.temperatureOptions.ranges;
+    //Set only if not already set
+    if (this.temperatureUnits !== unit) {
+      this.temperatureUnits = unit;
+      this.temperatureFloor = tempRanges[unit].min;
+      this.temperatureCeil = tempRanges[unit].max;
+      this.temperatureStep = tempRanges[unit].step;
+      this.setNewOption(this.temperatureFloor, this.temperatureCeil, this.temperatureStep);
+      this.temperature = Math.round(unit === 'F' ? this.temperature * 9 / 5 + 32 : (this.temperature - 32) * 5 / 9);
+      if (this.temperature > this.temperatureCeil) {
+        this.temperature = this.temperatureCeil;
+      } else if (this.temperature < this.temperatureFloor) {
+        this.temperature = this.temperatureFloor;
+      }
+    }
+  }
 }

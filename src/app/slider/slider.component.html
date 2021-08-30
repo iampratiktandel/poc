@@ -1,3 +1,22 @@
 <h3>Intensity</h3>
-<p>Value: <input type="number" [(ngModel)]="value"></p>
-<ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+<!-- <p>Value: <input type="number" [(ngModel)]="value"></p> -->
+<!-- <ngx-slider [(value)]="value" [options]="options"></ngx-slider> -->
+
+<div class="row glyphChooser">
+  <div class="hidden-xs col-sm-2 align-center">
+      <p><img src="../../assets/images/icon-rest.png" alt=""></p>
+      <p translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.INTENSITY.REST"></p>
+  </div>
+  <div class="col-sm-8">
+    <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+  </div>
+  <div class="hidden-xs col-sm-2 align-center">
+      <p><img src="../../assets/images/icon-allout.png" alt=""></p>
+      <p translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.INTENSITY.ALL_OUT"></p>
+  </div>
+</div>
+<div class="row glyphChooser">
+  <div class="col-xs-4 col-xs-offset-5">
+    <p><input type="number" [(ngModel)]="value" (change)="checkIntensity()"></p> 
+  </div>
+</div>
