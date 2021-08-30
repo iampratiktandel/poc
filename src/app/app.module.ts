@@ -8,20 +8,27 @@ import { AppComponent } from './app.component';
 import { SliderComponent } from './slider/slider.component';
 import { TemperatureSliderComponent } from './temperature-slider/temperature-slider.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { AgmCoreModule } from '@agm/core';
+import { LocationSaveComponent } from './location-save/location-save.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SliderComponent,
     TemperatureSliderComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    LocationSaveComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxSliderModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyD1LO57a_lvNYcpgFynSG08Vt4d9fNBVy0',
+      libraries: ['places', 'drawing']
+  })
   ],
   providers: [],
   bootstrap: [AppComponent]

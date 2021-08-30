@@ -1,0 +1,15 @@
+<div class="container">
+
+  <button (click)="setCurrentLocation()">Save Location</button>
+
+  <div *ngIf="location">
+    <p> Country: {{ location.country }} </p>
+    <p> State: {{ location.state }} </p>
+    <p> City: {{ location.city }} </p>
+    <p> Zipcode: {{ location.zipCode }} </p>
+    <p> Google Places Id: {{ location.googlePlacesId }} </p>
+    <p> Latitude: {{ latitude }} </p>
+    <p> Longitude: {{ longitude }} </p>
+  </div>
+  
+</div>
