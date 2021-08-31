@@ -1,0 +1,46 @@
+<!-- <form [formGroup]="temperatureForm">
+  <div class="row">
+      <div class="col-6 col-sm-3 offset-md-3">
+          <input type="number" min="0" formControlName="temperatureValue" class="form-control temperature-count">
+      </div>
+      <div class="col-6 col-sm-3 d-flex flex-column align-items-start">
+          <div>
+              <input class="custom-radio" id="option1" value="miles" type="radio" formControlName="temperatureUnit" />
+              <label for="option1">Miles</label>
+          </div>
+          <div>
+              <input class="custom-radio" id="option2" value="kilometers" type="radio" formControlName="temperatureUnit" />
+              <label for="option2">Kilometers</label>
+          </div>
+      </div>
+  </div>
+</form> -->
+
+<form [formGroup]="temperatureForm">
+  <div class="row">
+    <div class="col-12 col-md-6">
+        <div class="slider-temperature">
+            <div class="thermometer-top"></div>
+              <div class="thermometer-tube">
+                <ngx-slider [(value)]="temperature" [(options)]="options"></ngx-slider>
+              </div>
+            <div class="thermometer-bulb"></div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 text-start">
+        <input type="number" formControlName="temperatureValue" id="temperatureValue" class="temp-input form-control" (change)="checkTemperature()" [(ngModel)]="temperature">
+        <div class="checkbox d-flex mt-4" (click)="setTemperatureUnit('C')">
+          <input class="custom-radio" id="option1" value="C" type="radio" formControlName="temperatureUnit" />
+          <!-- <p class="mb-1"><i class="fa fa-circle-o me-1" *ngIf="!isTemperatureUnit('C')"></i></p>
+          <p><i class="fa fa-circle me-1" *ngIf="isTemperatureUnit('C')"></i></p> -->
+          <span translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.TEMPERATURE.C"></span>
+        </div>
+        <div class="checkbox d-flex" (click)="setTemperatureUnit('F')">
+          <input class="custom-radio" id="option2" value="F" type="radio" formControlName="temperatureUnit" />
+          <!-- <p class="mb-1"><i class="fa fa-circle-o me-1" *ngIf="!isTemperatureUnit('F')"></i></p>
+          <p><i class="fa fa-circle me-1" *ngIf="isTemperatureUnit('F')"></i></p> -->
+          <span translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.TEMPERATURE.F"></span>
+        </div>
+    </div>
+  </div>
+</form>

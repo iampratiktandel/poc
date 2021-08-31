@@ -1,0 +1,28 @@
+<div class="row location">
+  <div class="col-sm-12 text-center">
+      <h4
+        translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.LOCATION.TAP"
+      ></h4>
+      <h4
+        translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.LOCATION.SAVED"
+      ></h4>
+      <br />
+      <div class="text-center">
+          <button
+            *ngIf="!capturingLocation"
+              class="m1-button m1-button-submit button-energized"
+              (click)="setCurrentLocation()"
+              translate="SHARED.PRODUCT_TESTS.ACTIVITY_LOGS.QUESTIONS.LOCATION.SAVE"
+          ></button>
+          <h2>
+            <i class="fa fa-spinner fa-spin" *ngIf="capturingLocation"></i>
+          </h2>
+          <h1>
+              <i class="fa fa-check"></i>
+          </h1>
+      </div>
+      <!-- <div class="text-center" ng-show="locationError">
+          <h5 class="text-error" ng-bind="locationError"></h5>
+      </div> -->
+  </div>
+</div>
