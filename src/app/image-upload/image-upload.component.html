@@ -1,16 +1,45 @@
 <h3>Image Upload</h3>
 <!-- <input type="text" (change)="addImage($event.target.value)">  -->
-<input type="file" name="" id="" multiple accept="*" (change)="addImage($event.target.value)">
+<!-- <input type="file" name="" id="" multiple accept="*" (change)="addImage($event.target.value)"> -->
+<input type="file" name="" id="" multiple accept="*" (change)="addImage($event)">
 
 <h5>Your Product Images</h5>
-<div *ngFor="let image of images">
+<!-- <div *ngFor="let image of images; let i = index">
   <div class="product-gallery">
     {{image}}
-    <img src="" alt="">
-    <input type="text" name="" id="">
-    <br>
-    <textarea name="" id="" cols="20" rows="3"></textarea>
-    <br>
+      <input type="text" name="name" id="" value={{i}} (blur)="updateObject($event.target.value, i)"><br>
+      <textarea name="description" id="" cols="20" rows="3" (blur)="updateObject($event.target.value, i)"></textarea><br>
     <button (click)="deleteImage()">Delete</button>
   </div>
-</div>
+</div> -->
+
+
+<!-- <div class="text-center">
+  <form class="d-flex align-items-center justify-content-center" [formGroup]="form">
+      <div class="d-flex flex-column align-items-start ps-5">
+          <label formArrayName="checkBoxList" *ngFor="let product of checkboxListArray.controls; let i = index">
+      <input type="checkbox" [formControlName]="i" />
+      <span translate="{{ checkboxListItems[i].token }}"></span>
+      </label>
+          <div class="error-message" *ngIf="checkboxListArray.touched && checkboxListArray.errors?.required">At least one product must be selected</div>
+      </div>
+  </form>
+</div> -->
+
+
+<form [formGroup]="productForm">
+  <div *ngFor="let image of images; let item of productForm.get('items')['controls']; let i = index" formArrayName="items">
+    <div class="product-gallery">
+      {{image}}
+        <input type="text" name="name" id="" (blur)="updateObject(productForm)" [formControlName]="i"><br>
+        <textarea name="description" id="" cols="20" rows="3" (blur)="updateObject(productForm)" [formControlName]="i"></textarea><br>
+        Exposed item name: {{ productForm.controls.items.controls[i].controls.description.value }}
+        <button (click)="deleteImage()">Delete</button>
+    </div>
+  </div>
+    <!-- <div [formGroupName]="i">
+      <input formControlName="name" placeholder="Item name" (blur)="updateObject(productForm.value)">
+      <input formControlName="description" placeholder="Item description" (blur)="updateObject(productForm.value)">
+    </div>
+  <button type="button" (click)="addItem()">Add Item</button> -->
+</form>

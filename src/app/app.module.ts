@@ -2,6 +2,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +33,8 @@ import { LocationMvpComponent } from './location-mvp/location-mvp.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD1LO57a_lvNYcpgFynSG08Vt4d9fNBVy0',
       libraries: ['places', 'drawing']
-  })
+  }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
