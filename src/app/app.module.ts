@@ -13,6 +13,7 @@ import { AgmCoreModule } from '@agm/core';
 import { LocationSaveComponent } from './location-save/location-save.component';
 import { TempMvpComponent } from './temp-mvp/temp-mvp.component';
 import { LocationMvpComponent } from './location-mvp/location-mvp.component';
+import { MultiRadioButtonComponent } from './multi-radio-button/multi-radio-button.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LocationMvpComponent } from './location-mvp/location-mvp.component';
     ImageUploadComponent,
     LocationSaveComponent,
     TempMvpComponent,
-    LocationMvpComponent
+    LocationMvpComponent,
+    MultiRadioButtonComponent
   ],
   imports: [
     BrowserModule,

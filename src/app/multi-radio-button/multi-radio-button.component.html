@@ -1,0 +1,12 @@
+  
+<div class="text-center">
+  <form class="d-flex align-items-center justify-content-center" [formGroup]="form">
+      <div class="d-flex flex-column align-items-start ps-5">
+          <label formArrayName="radioList" *ngFor="let order of radioListArray.controls; let i = index">
+      <input class="cursor-pointer" type="checkbox" [formControlName]="i" />
+      <span translate="{{ checkboxListItems[i].token }}"></span>
+      </label>
+          <div class="error-message" *ngIf="radioListArray.touched && radioListArray.errors?.required">At least one order must be selected</div>
+      </div>
+  </form>
+</div>
