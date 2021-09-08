@@ -1,0 +1,20 @@
+<form [formGroup]="personForm" class="form">
+  <div>
+    <label class="field-label">Hobbies</label>
+    <div class="flex-container">
+      <div *ngFor="let hobby of personForm.controls.hobbies['controls']; let i=index;">
+        <input type="checkbox" [formControl]="hobby">
+        {{myhobbies[i].name}}
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="element">
+  <label class="field-label">Selected Hobbies:</label>
+  <div class="flex-container">
+    <label *ngFor="let hobby of selectedHobbiesNames;">
+      {{hobby}}
+    </label>
+  </div>
+</div>

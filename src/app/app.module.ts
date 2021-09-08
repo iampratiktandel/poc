@@ -14,6 +14,7 @@ import { LocationSaveComponent } from './location-save/location-save.component';
 import { TempMvpComponent } from './temp-mvp/temp-mvp.component';
 import { LocationMvpComponent } from './location-mvp/location-mvp.component';
 import { MultiRadioButtonComponent } from './multi-radio-button/multi-radio-button.component';
+import { MultiCheckboxComponent } from './multi-checkbox/multi-checkbox.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MultiRadioButtonComponent } from './multi-radio-button/multi-radio-butt
     LocationSaveComponent,
     TempMvpComponent,
     LocationMvpComponent,
-    MultiRadioButtonComponent
+    MultiRadioButtonComponent,
+    MultiCheckboxComponent
   ],
   imports: [
     BrowserModule,
